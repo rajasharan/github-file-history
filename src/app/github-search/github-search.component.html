@@ -3,19 +3,19 @@
     <div class="container has-text-centered">
       <p class="control has-addons">
         <a class="button is-large is-disabled">API </a>
-        <input class="input is-large" type="text" [placeholder]="API_URL"
-          [value]="API_URL" (input)="apiUrl=$event.target.value">
+        <input class="input is-large" type="text" placeholder="https://api.github.com"
+          [value]="github.apiUrl" (input)="github.apiUrl=$event.target.value">
       </p>
 
       <p class="control has-addons">
-        <input class="input" type="text" placeholder="Username" 
-            [value]="username" (input)="username=$event.target.value">
+        <input class="input" type="text" placeholder="Username / Owner" 
+            [value]="github.owner" (input)="github.owner=$event.target.value">
         <a class="button is-disabled">/</a>
 
-        <input class="input" type="text" placeholder="Project" 
-        [value]="project" (input)="project=$event.target.value">
+        <input class="input" type="text" placeholder="Project / Repo" 
+        [value]="github.repo" (input)="github.repo=$event.target.value">
 
-        <a class="button" [class.is-disabled]="isInputInvalid()"
+        <a class="button" [class.is-disabled]="github.isInvalid()"
             (click)="onClick()">Load</a>
       </p>
     </div>

@@ -30,19 +30,24 @@
           <div class="tile is-parent">
             <div class="tile is-child box">
               <p class="title">History</p>
-              <pre>
-              Lorem ipsum dolor .
-              Suspendisse varius ligula  at volutpat tortor.
-              Integer o.
-              </pre>
+              <pre>{{fileContents}}</pre>
             </div>
           </div>
         </div>
 
         <div class="column files">
+          <aside class="menu">
+            <p class="menu-label">Files</p>
+            <ul class="menu-list">
+              <li *ngFor="let file of files">
+                <a (click)="getFileContents(file.name)">{{file.name}}</a>
+              </li>
+            </ul>
+          </aside>
+
           <p class="title">Files</p>
           <ul>
-            <li *ngFor="let file of files">{{file.name}}</li>
+            <!--<li *ngFor="let file of files">{{file.name}}</li>-->
           </ul>
         </div>
 

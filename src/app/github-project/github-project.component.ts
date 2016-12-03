@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Http, Response } from '@angular/http';
 
-import { GHFilesService } from '../gh-files.service';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
+import { GithubService } from '../gh-files.service';
 
 @Component({
   selector: 'app-github-project',
@@ -12,8 +16,12 @@ export class GithubProjectComponent implements OnInit {
   private username: string;
   private project: string;
   private files: any[];
+  private fileContents: string;
 
-  constructor(private route: ActivatedRoute, private filesService: GHFilesService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private http: Http,
+    private github: GithubService) { }
 
   ngOnInit() {
     this.route.params.subscribe(obj => {
@@ -21,7 +29,7 @@ export class GithubProjectComponent implements OnInit {
       this.project = obj["project"];
     });
 
-    this.files = this.filesService.getFiles();
+    this.files = this.github.getFiles();
   }
 
   private isButtonDisabled(): boolean {
@@ -31,5 +39,16 @@ export class GithubProjectComponent implements OnInit {
     else {
       return false;
     }
+  }
+
+  getFileContents(filename: string): void {
+    this.http
+      .get(`${this.github.rawUrl.replace(/\/+$/, "")}/${this.username}/${this.project}/master/${filename}`)
+      .map(res => res.text())
+      .subscribe(
+        text => this.fileContents = text,
+        err => console.log(err)
+      );
+
   }
 }

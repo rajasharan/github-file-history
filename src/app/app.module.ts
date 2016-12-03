@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { GithubSearchComponent } from './github-search/github-search.component';
 import { GithubProjectComponent } from './github-project/github-project.component';
-import { GHFilesService } from './gh-files.service';
+import { GithubService } from './gh-files.service';
 
 const appRoutes: Routes = [
   { path: '', component: GithubSearchComponent },
@@ -26,7 +26,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [GHFilesService],
+  providers: [GithubService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
