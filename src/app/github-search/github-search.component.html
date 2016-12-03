@@ -1,0 +1,19 @@
+<section class="hero is-large">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <p class="control has-addons">
+        <a class="button is-large is-disabled">API </a>
+        <input class="input is-large" type="text" [placeholder]="API_URL"
+          [value]="API_URL" (input)="apiUrl=$event.target.value">
+      </p>
+
+      <p class="control has-addons">
+        <input class="input" type="text" placeholder="Username" (input)="username=$event.target.value">
+        <a class="button is-disabled">/</a>
+        <input class="input" type="text" placeholder="Project" (input)="project=$event.target.value">
+        <a class="button" [class.is-disabled]="isButtonDisabled()" 
+            [routerLink]="['/project', username, project]">Load</a>
+      </p>
+    </div>
+  </div>
+</section>

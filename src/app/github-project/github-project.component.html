@@ -1,0 +1,24 @@
+<section class="hero is-primary">
+  <div class="hero-head">
+    <header class="nav">
+      <div class="container">
+        <div class="nav-left">
+            <p class="control has-addons nav-item">
+              <input class="input" type="text" placeholder="Username"
+                  [value]="username"
+                  (input)="username=$event.target.value">
+
+              <a class="button is-disabled">/</a>
+
+              <input class="input" type="text" placeholder="Project"
+                  [value]="project"
+                  (input)="project=$event.target.value">
+                  
+              <a class="button" [class.is-disabled]="isButtonDisabled()" 
+                  [routerLink]="['/project', username, project]">Reload</a>
+            </p>
+        </div>
+      </div>
+    </header>
+  </div>
+</section>
