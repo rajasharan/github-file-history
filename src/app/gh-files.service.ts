@@ -20,11 +20,11 @@ export class GithubService {
   }
 
   getFiles$(
-    apiUrl: string = this.apiUrl,
     owner: string = this.owner,
     repo: string = this.repo,
+    apiUrl: string = this.apiUrl,
     sha: string = "master"
-  ): Observable<any> {
+  ): Observable<string[]> {
       return this.http
         .get(`${this.trimUrl(apiUrl)}/repos/${owner}/${repo}/git/trees/${sha}?recursive=1`)
         .map(res => res.json().tree)
@@ -34,11 +34,11 @@ export class GithubService {
 
   getFileContent$(
     filename: string,
-    rawUrl: string = this.rawUrl,
     owner: string = this.owner,
+    sha: string = "master",
     repo: string = this.repo,
-    sha: string = "master"
-  ): Observable<any> {
+    rawUrl: string = this.rawUrl
+  ): Observable<string> {
       return this.http
         .get(`${this.trimUrl(rawUrl)}/${owner}/${repo}/${sha}/${filename}`)
         .map(res => res.text());
@@ -49,7 +49,7 @@ export class GithubService {
     apiUrl: string = this.rawUrl,
     owner: string = this.owner,
     repo: string = this.repo
-  ): Observable<string> {
+  ): Observable<string[]> {
       return this.http
         .get(`${this.trimUrl(apiUrl)}/repos/${owner}/${repo}/commits?path=${filename}`)
         .map(res => res.json())

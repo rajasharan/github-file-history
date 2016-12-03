@@ -4,18 +4,18 @@
       <div class="container">
         <div class="nav-left">
             <p class="control has-addons nav-item">
-              <input class="input" type="text" placeholder="Username"
-                  [value]="username"
-                  (input)="username=$event.target.value">
+              <input class="input" type="text" placeholder="Owner"
+                  [value]="github.owner"
+                  (input)="github.owner=$event.target.value">
 
               <a class="button is-disabled">/</a>
 
-              <input class="input" type="text" placeholder="Project"
-                  [value]="project"
-                  (input)="project=$event.target.value">
+              <input class="input" type="text" placeholder="Repository"
+                  [value]="github.repo"
+                  (input)="github.repo=$event.target.value">
                   
-              <a class="button" [class.is-disabled]="isButtonDisabled()" 
-                  [routerLink]="['/project', username, project]">Reload</a>
+              <a class="button" [class.is-disabled]="github.isInvalid()"
+                  [routerLink]="['/project', github.owner, github.repo]">Reload</a>
             </p>
         </div>
       </div>
@@ -30,7 +30,7 @@
           <div class="tile is-parent">
             <div class="tile is-child box">
               <p class="title">History</p>
-              <pre>{{fileContents}}</pre>
+              <pre>{{fileContent$ | async}}</pre>
             </div>
           </div>
         </div>
@@ -39,13 +39,13 @@
           <aside class="menu">
             <p class="menu-label">Files</p>
             <ul class="menu-list">
-              <li *ngFor="let file of files">
-                <a (click)="getFileContents(file.name)">{{file.name}}</a>
+              <li *ngFor="let filename of filenames">
+                <a (click)="onFilenameClicked(filename)">{{filename}}</a>
               </li>
             </ul>
           </aside>
         </div>
-        
+
       </div>
     </div>
   </div>

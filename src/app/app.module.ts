@@ -11,7 +11,7 @@ import { GithubService } from './gh-files.service';
 
 const appRoutes: Routes = [
   { path: '', component: GithubSearchComponent },
-  { path: 'project/:username/:project', component: GithubProjectComponent }
+  { path: 'project/:owner/:repo', component: GithubProjectComponent }
 ];
 
 @NgModule({

@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
-import { Http, Response } from '@angular/http';
+import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 
 import { GithubService } from '../gh-files.service';
 
@@ -13,58 +11,35 @@ import { GithubService } from '../gh-files.service';
   styleUrls: ['./github-project.component.css']
 })
 export class GithubProjectComponent implements OnInit {
-  private username: string;
-  private project: string;
-  private files: any[];
-  private fileContents: string;
+  private filenames: string[];
+  private fileContent$: Observable<string>;
 
   constructor(
-    private router: Router,
-    
     private route: ActivatedRoute,
-    private http: Http,
-    private github: GithubService) { }
+    private github: GithubService
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe(obj => {
-      this.username = obj["username"];
-      this.project = obj["project"];
+      this.routeParamsChanged(obj);
+      this.listFiles();
     });
-
-    this.files = this.github.getFiles();
-
-    this.router.events
-      .subscribe(
-        (r: RoutesRecognized) => {
-          if (r.state && r.state.root) {
-            r.state.root.children.forEach(routeSnapshot => {
-              if (routeSnapshot.component === GithubProjectComponent) {
-                console.log(routeSnapshot.params);
-              }
-            });
-          }
-        },
-        err => console.log(err)
-      );
   }
 
-  private isButtonDisabled(): boolean {
-    if (!this.username || !this.project || this.username.length === 0 || this.project.length === 0) {
-      return true;
-    }
-    else {
-      return false;
-    }
+  private routeParamsChanged(params): void {
+    this.github.owner = params["owner"];
+    this.github.repo = params["repo"];
   }
 
-  getFileContents(filename: string): void {
-    this.http
-      .get(`${this.github.rawUrl.replace(/\/+$/, "")}/${this.username}/${this.project}/master/${filename}`)
-      .map(res => res.text())
+  private listFiles(): void {
+    this.github.getFiles$(this.github.owner, this.github.repo)
       .subscribe(
-        text => this.fileContents = text,
+        filenames => this.filenames = filenames,
         err => console.log(err)
-      );
+      )
+  }
 
+  onFilenameClicked(filename: string): void {
+    this.fileContent$ = this.github.getFileContent$(filename);
   }
 }
