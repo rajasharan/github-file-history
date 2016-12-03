@@ -1,23 +1,29 @@
-<section class="hero is-large">
+<section class="hero is-fullheight">
   <div class="hero-body">
-    <div class="container has-text-centered">
+    <div class="container">
       <p class="control has-addons">
-        <a class="button is-large is-disabled">API </a>
-        <input class="input is-large" type="text" placeholder="https://api.github.com"
-          [value]="github.apiUrl" (input)="github.apiUrl=$event.target.value">
+        <a class="button is-medium is-disabled">API Endpoint</a>
+        <input class="input is-medium is-expanded" type="text" placeholder="https://api.github.com" [(ngModel)]="github.apiUrl">
       </p>
 
-      <p class="control has-addons">
-        <input class="input" type="text" placeholder="Username / Owner" 
-            [value]="github.owner" (input)="github.owner=$event.target.value">
-        <a class="button is-disabled">/</a>
+      <div class="control is-grouped">
+        <p class="control has-addons">
+          <a class="button is-large is-disabled">Username</a>
+          <input class="input is-large" type="text" placeholder="Username / Owner" 
+              [(ngModel)]="github.owner">
+        </p>
 
-        <input class="input" type="text" placeholder="Project / Repo" 
-        [value]="github.repo" (input)="github.repo=$event.target.value">
+        <p class="control has-addons">
+          <a class="button is-large is-disabled">Repository</a>
+          <input class="input is-exapaded is-large" type="text" placeholder="Project / Repo" 
+              [(ngModel)]="github.repo">
+        </p>
 
-        <a class="button" [class.is-disabled]="github.isInvalid()"
-            (click)="onClick()">Load</a>
-      </p>
+        <p class="control">
+          <a class="button is-large is-primary" [class.is-disabled]="github.isInvalid()" 
+              [routerLink]="['/project', github.owner, github.repo]">Load</a>
+        </p>
+      </div>
     </div>
   </div>
 </section>

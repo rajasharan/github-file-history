@@ -14,8 +14,4 @@ export class GithubSearchComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  onClick(): void {
-    this.router.navigate(['/project', this.github.owner, this.github.repo]);
-  }
 }

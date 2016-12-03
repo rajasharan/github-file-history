@@ -5,14 +5,12 @@
         <div class="nav-left">
             <p class="control has-addons nav-item">
               <input class="input" type="text" placeholder="Owner"
-                  [value]="github.owner"
-                  (input)="github.owner=$event.target.value">
+                  [ngModel]="github.owner" (ngModelChange)="github.owner=$event">
 
               <a class="button is-disabled">/</a>
 
               <input class="input" type="text" placeholder="Repository"
-                  [value]="github.repo"
-                  (input)="github.repo=$event.target.value">
+                  [ngModel]="github.repo" (ngModelChange)="github.repo=$event">
                   
               <a class="button" [class.is-disabled]="github.isInvalid()"
                   [routerLink]="['/project', github.owner, github.repo]">Reload</a>
