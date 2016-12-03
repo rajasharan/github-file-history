@@ -9,13 +9,15 @@ import { GithubSearchComponent } from './github-search/github-search.component';
 import { GithubProjectComponent } from './github-project/github-project.component';
 import { GithubService } from './gh-files.service';
 import { GithubFileviewComponent } from './github-fileview/github-fileview.component';
+import { FilenamePipe } from './filename.pipe';
 
 const appRoutes: Routes = [
   { path: '', component: GithubSearchComponent },
   { path: 'project/:owner/:repo',
     component: GithubProjectComponent,
     children: [
-      { path: ':filename', component: GithubFileviewComponent }
+      { path: ':filename', component: GithubFileviewComponent },
+      { path: '', redirectTo: 'README.md' }
     ]
   }
 ];
@@ -25,7 +27,8 @@ const appRoutes: Routes = [
     AppComponent,
     GithubSearchComponent,
     GithubProjectComponent,
-    GithubFileviewComponent
+    GithubFileviewComponent,
+    FilenamePipe
   ],
   imports: [
     BrowserModule,
