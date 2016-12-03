@@ -1,4 +1,4 @@
-<section class="hero is-primary">
+<section class="hero is-fullheight">
   <div class="hero-head">
     <header class="nav">
       <div class="container">
@@ -20,5 +20,33 @@
         </div>
       </div>
     </header>
+  </div>
+
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns">
+        
+        <div class="column is-three-quarters file">
+          <div class="tile is-parent">
+            <div class="tile is-child box">
+              <p class="title">History</p>
+              <pre>
+              Lorem ipsum dolor .
+              Suspendisse varius ligula  at volutpat tortor.
+              Integer o.
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="column files">
+          <p class="title">Files</p>
+          <ul>
+            <li *ngFor="let file of files">{{file.name}}</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
   </div>
 </section>

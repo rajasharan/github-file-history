@@ -1,0 +1,15 @@
+
+:host .hero-body {
+    align-items: initial;
+    padding: 0px;
+    /*background-color: ghostwhite;*/
+}
+
+:host .files {
+    margin-top: 25px;
+    overflow: auto;
+}
+
+:host .file {
+    overflow: auto;
+}

@@ -8,11 +8,15 @@
       </p>
 
       <p class="control has-addons">
-        <input class="input" type="text" placeholder="Username" (input)="username=$event.target.value">
+        <input class="input" type="text" placeholder="Username" 
+            [value]="username" (input)="username=$event.target.value">
         <a class="button is-disabled">/</a>
-        <input class="input" type="text" placeholder="Project" (input)="project=$event.target.value">
-        <a class="button" [class.is-disabled]="isButtonDisabled()" 
-            [routerLink]="['/project', username, project]">Load</a>
+
+        <input class="input" type="text" placeholder="Project" 
+        [value]="project" (input)="project=$event.target.value">
+
+        <a class="button" [class.is-disabled]="isInputInvalid()"
+            (click)="onClick()">Load</a>
       </p>
     </div>
   </div>
