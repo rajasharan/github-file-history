@@ -29,8 +29,7 @@
         <div class="column is-three-quarters file">
           <div class="tile is-parent">
             <div class="tile is-child box">
-              <p class="title">History</p>
-              <pre>{{fileContent$ | async}}</pre>
+              <router-outlet></router-outlet>
             </div>
           </div>
         </div>
@@ -40,7 +39,8 @@
             <p class="menu-label">Files</p>
             <ul class="menu-list">
               <li *ngFor="let filename of filenames">
-                <a (click)="onFilenameClicked(filename)">{{filename}}</a>
+                <a [routerLink]="['/project', github.owner, github.repo, filename]"
+                  routerLinkActive="is-active">{{filename}}</a>
               </li>
             </ul>
           </aside>

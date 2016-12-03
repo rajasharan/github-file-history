@@ -8,17 +8,24 @@ import { AppComponent } from './app.component';
 import { GithubSearchComponent } from './github-search/github-search.component';
 import { GithubProjectComponent } from './github-project/github-project.component';
 import { GithubService } from './gh-files.service';
+import { GithubFileviewComponent } from './github-fileview/github-fileview.component';
 
 const appRoutes: Routes = [
   { path: '', component: GithubSearchComponent },
-  { path: 'project/:owner/:repo', component: GithubProjectComponent }
+  { path: 'project/:owner/:repo',
+    component: GithubProjectComponent,
+    children: [
+      { path: ':filename', component: GithubFileviewComponent }
+    ]
+  }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     GithubSearchComponent,
-    GithubProjectComponent
+    GithubProjectComponent,
+    GithubFileviewComponent
   ],
   imports: [
     BrowserModule,

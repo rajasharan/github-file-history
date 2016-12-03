@@ -6,8 +6,6 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GithubService {
-  private files: any[];
-
   rawUrl: string = "https://raw.githubusercontent.com";
   apiUrl: string = "https://api.github.com";
   owner: string = "rajasharan";
@@ -34,8 +32,8 @@ export class GithubService {
 
   getFileContent$(
     filename: string,
-    owner: string = this.owner,
     sha: string = "master",
+    owner: string = this.owner,
     repo: string = this.repo,
     rawUrl: string = this.rawUrl
   ): Observable<string> {
@@ -54,19 +52,6 @@ export class GithubService {
         .get(`${this.trimUrl(apiUrl)}/repos/${owner}/${repo}/commits?path=${filename}`)
         .map(res => res.json())
         .map(arr => arr.map(obj => obj.sha));
-  }
-
-  setFiles(files: any[]): void {
-    this.files = files
-      .filter(file => file.type === 'blob')
-      .filter(file => file.size <= 5000)
-      .map(file => {
-        return { name: file.path, type: file.type, size: file.size };
-      })
-  }
-
-  getFiles(): any[] {
-    return this.files;
   }
 
   isInvalid(): boolean {
