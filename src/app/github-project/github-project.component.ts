@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
 import { Http, Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -19,6 +19,8 @@ export class GithubProjectComponent implements OnInit {
   private fileContents: string;
 
   constructor(
+    private router: Router,
+    
     private route: ActivatedRoute,
     private http: Http,
     private github: GithubService) { }
@@ -30,6 +32,20 @@ export class GithubProjectComponent implements OnInit {
     });
 
     this.files = this.github.getFiles();
+
+    this.router.events
+      .subscribe(
+        (r: RoutesRecognized) => {
+          if (r.state && r.state.root) {
+            r.state.root.children.forEach(routeSnapshot => {
+              if (routeSnapshot.component === GithubProjectComponent) {
+                console.log(routeSnapshot.params);
+              }
+            });
+          }
+        },
+        err => console.log(err)
+      );
   }
 
   private isButtonDisabled(): boolean {
