@@ -9,7 +9,7 @@ export class GithubService {
   rawUrl: string = "https://raw.githubusercontent.com";
   apiUrl: string = "https://api.github.com";
   owner: string = "rajasharan";
-  repo: string = "ng2-healthcheck";
+  repo: string = "github-file-history";
 
   constructor(private http: Http) { }
 

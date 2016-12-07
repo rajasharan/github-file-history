@@ -32,7 +32,7 @@ export class GithubProjectComponent implements OnInit {
   }
 
   private listFiles(): void {
-    this.github.getFiles$(this.github.owner, this.github.repo, "http://www.mocky.io/v2/58431c68100000630a1a56cc")
+    this.github.getFiles$(this.github.owner, this.github.repo)
       .subscribe(
         filenames => this.filenames = filenames,
         err => console.log(err)

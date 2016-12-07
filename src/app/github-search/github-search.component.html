@@ -1,10 +1,19 @@
 <section class="hero is-fullheight">
   <div class="hero-body">
     <div class="container">
-      <p class="control has-addons">
-        <a class="button is-medium is-disabled">API Endpoint</a>
-        <input class="input is-medium is-expanded" type="text" placeholder="https://api.github.com" [(ngModel)]="github.apiUrl">
-      </p>
+      <div class="control is-grouped">
+        <p class="control has-addons is-expanded">
+          <a class="button is-medium is-disabled">API Endpoint</a>
+          <input class="input is-medium is-expanded" type="text" placeholder="https://api.github.com"
+              [(ngModel)]="github.apiUrl">
+        </p>
+
+        <p class="control has-addons is-expanded">
+          <a class="button is-medium is-disabled">RAW Endpoint</a>
+          <input class="input is-medium is-expanded" type="text" placeholder="https://raw.githubusercontent.com"
+              [(ngModel)]="github.rawUrl">
+        </p>
+      </div>
 
       <div class="control is-grouped">
         <p class="control has-addons">
@@ -15,7 +24,7 @@
 
         <p class="control has-addons">
           <a class="button is-large is-disabled">Repository</a>
-          <input class="input is-exapaded is-large" type="text" placeholder="Project / Repo" 
+          <input class="input is-expanded is-large" type="text" placeholder="Project / Repo" 
               [(ngModel)]="github.repo">
         </p>
 
