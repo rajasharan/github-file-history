@@ -1,38 +1,47 @@
-<section class="hero is-fullheight">
+<section class="hero is-primary">
   <div class="hero-body">
     <div class="container">
-      <div class="control is-grouped">
-        <p class="control has-addons is-expanded">
-          <a class="button is-medium is-disabled">API Endpoint</a>
-          <input class="input is-medium is-expanded" type="text" placeholder="https://api.github.com"
-              [(ngModel)]="github.apiUrl">
-        </p>
-
-        <p class="control has-addons is-expanded">
-          <a class="button is-medium is-disabled">RAW Endpoint</a>
-          <input class="input is-medium is-expanded" type="text" placeholder="https://raw.githubusercontent.com"
-              [(ngModel)]="github.rawUrl">
-        </p>
-      </div>
-
-      <div class="control is-grouped">
-        <p class="control has-addons">
-          <a class="button is-large is-disabled">Username</a>
-          <input class="input is-large" type="text" placeholder="Username / Owner" 
-              [(ngModel)]="github.owner">
-        </p>
-
-        <p class="control has-addons">
-          <a class="button is-large is-disabled">Repository</a>
-          <input class="input is-expanded is-large" type="text" placeholder="Project / Repo" 
-              [(ngModel)]="github.repo">
-        </p>
-
-        <p class="control">
-          <a class="button is-large is-primary" [class.is-disabled]="github.isInvalid()" 
-              [routerLink]="['/project', github.owner, github.repo]">Load</a>
-        </p>
-      </div>
+      <h1 class="title">
+        <a href="https://github.com/rajasharan/github-file-history/">Github File History Viewer</a>
+      </h1>
+      <h2 class="subtitle">
+        Navigate back &amp; forth thru file history of github projects
+      </h2>
     </div>
+  </div>
+</section>
+
+<section class="container">
+  <div class="control is-grouped">
+    <p class="control has-addons is-expanded">
+      <a class="button is-medium is-disabled">API Endpoint</a>
+      <input class="input is-medium is-expanded" type="text" placeholder="https://api.github.com"
+          [(ngModel)]="github.apiUrl">
+    </p>
+
+    <p class="control has-addons is-expanded">
+      <a class="button is-medium is-disabled">RAW Endpoint</a>
+      <input class="input is-medium is-expanded" type="text" placeholder="https://raw.githubusercontent.com"
+          [(ngModel)]="github.rawUrl">
+    </p>
+  </div>
+
+  <div class="control is-grouped">
+    <p class="control has-addons">
+      <a class="button is-large is-disabled">Username</a>
+      <input class="input is-large" type="text" placeholder="Username / Owner" 
+          [(ngModel)]="github.owner">
+    </p>
+
+    <p class="control has-addons">
+      <a class="button is-large is-disabled">Repository</a>
+      <input class="input is-expanded is-large" type="text" placeholder="Project / Repo" 
+          [(ngModel)]="github.repo">
+    </p>
+
+    <p class="control">
+      <a class="button is-large is-primary" [class.is-disabled]="github.isInvalid()" 
+          [routerLink]="['/project', github.owner, github.repo]">Load</a>
+    </p>
   </div>
 </section>
