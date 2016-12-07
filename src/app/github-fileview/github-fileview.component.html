@@ -1,2 +1,13 @@
-<p class="title">{{filename | filename}}</p>
-<pre>{{text}}</pre>
+<p class="control has-addons has-text-centered">
+  <a class="button is-large is-expanded" (click)="prevCommit()">< Previous</a>
+  <a class="button is-large is-expanded" (click)="nextCommit()">Next ></a>
+</p>
+
+<div class="tile is-parent">
+  <div class="tile is-child box">
+    <p class="title">{{filename | filename}}
+      <span class="subtitle" *ngIf="commits[filename]">( {{commits[filename][index]}} )</span>
+    </p>
+    <pre>{{text}}</pre>
+  </div>
+</div>

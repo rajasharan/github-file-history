@@ -44,7 +44,7 @@ export class GithubService {
 
   getFileCommits$(
     filename: string,
-    apiUrl: string = this.rawUrl,
+    apiUrl: string = this.apiUrl,
     owner: string = this.owner,
     repo: string = this.repo
   ): Observable<string[]> {
