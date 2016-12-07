@@ -44,4 +44,10 @@
           [routerLink]="['/project', github.owner, github.repo]">Load</a>
     </p>
   </div>
+
+  <p class="control has-addons">
+    <a class="button is-medium is-disabled">OAuth Token</a>
+    <input class="input is-medium" type="text" placeholder="Optional github token"
+        [ngModel]="github.token" (ngModelChange)="github.saveToken($event)">
+  </p>
 </section>

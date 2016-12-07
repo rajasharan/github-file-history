@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -10,8 +10,13 @@ export class GithubService {
   apiUrl: string = "https://api.github.com";
   owner: string = "rajasharan";
   repo: string = "github-file-history";
+  token: string;
 
-  constructor(private http: Http) { }
+  private KEY: string = 'gh_token';
+
+  constructor(private http: Http) {
+    this.token = localStorage.getItem(this.KEY);
+  }
 
   private trimUrl(url: string): string {
     return url.replace(/\/+$/, "");
@@ -23,8 +28,7 @@ export class GithubService {
     apiUrl: string = this.apiUrl,
     sha: string = "master"
   ): Observable<string[]> {
-      return this.http
-        .get(`${this.trimUrl(apiUrl)}/repos/${owner}/${repo}/git/trees/${sha}?recursive=1`)
+      return this.getHttp(`${this.trimUrl(apiUrl)}/repos/${owner}/${repo}/git/trees/${sha}?recursive=1`)
         .map(res => res.json().tree)
         .map(files => files.filter(f => f.size < 5000).filter(f => f.type === 'blob'))
         .map(files => files.map(f => f.path));
@@ -37,8 +41,7 @@ export class GithubService {
     repo: string = this.repo,
     rawUrl: string = this.rawUrl
   ): Observable<string> {
-      return this.http
-        .get(`${this.trimUrl(rawUrl)}/${owner}/${repo}/${sha}/${filename}`)
+      return this.http.get(`${this.trimUrl(rawUrl)}/${owner}/${repo}/${sha}/${filename}`)
         .map(res => res.text());
   }
 
@@ -48,8 +51,7 @@ export class GithubService {
     owner: string = this.owner,
     repo: string = this.repo
   ): Observable<string[]> {
-      return this.http
-        .get(`${this.trimUrl(apiUrl)}/repos/${owner}/${repo}/commits?path=${filename}`)
+      return this.getHttp(`${this.trimUrl(apiUrl)}/repos/${owner}/${repo}/commits?path=${filename}`)
         .map(res => res.json())
         .map(arr => arr.map(obj => obj.sha));
   }
@@ -62,6 +64,20 @@ export class GithubService {
     }
     else {
       return false;
+    }
+  }
+
+  saveToken(token: string): void {
+    this.token = token;
+    localStorage.setItem(this.KEY, token);
+  }
+
+  private getHttp(url: string): Observable<Response> {
+    if (this.token && this.token.length > 0) {
+      return this.http.get(url, {headers: new Headers({'Authorization': `token ${this.token}`})});
+    }
+    else {
+      return this.http.get(url);
     }
   }
 }
