@@ -27,16 +27,18 @@
   </div>
 
   <div class="control is-grouped">
-    <p class="control has-addons">
+    <p class="control has-addons has-icon has-icon-right">
       <a class="button is-large is-disabled">Username</a>
       <input class="input is-large" type="text" placeholder="Username / Owner" 
           [(ngModel)]="github.owner">
+      <i class="fa fa-user"></i>
     </p>
 
-    <p class="control has-addons">
+    <p class="control has-addons has-icon has-icon-right">
       <a class="button is-large is-disabled">Repository</a>
       <input class="input is-expanded is-large" type="text" placeholder="Project / Repo" 
           [(ngModel)]="github.repo">
+      <i class="fa fa-github"></i>
     </p>
 
     <p class="control">

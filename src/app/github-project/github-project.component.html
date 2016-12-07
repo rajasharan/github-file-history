@@ -2,19 +2,29 @@
   <div class="hero-head">
     <header class="nav">
       <div class="container">
-        <div class="nav-left">
-            <p class="control has-addons nav-item">
-              <input class="input" type="text" placeholder="Owner"
-                  [ngModel]="github.owner" (ngModelChange)="github.owner=$event">
-
-              <a class="button is-disabled">/</a>
-
-              <input class="input" type="text" placeholder="Repository"
-                  [ngModel]="github.repo" (ngModelChange)="github.repo=$event">
-                  
-              <a class="button" [class.is-disabled]="github.isInvalid()"
-                  [routerLink]="['/project', github.owner, github.repo]">Reload</a>
+        <div class="nav-left">  
+            <p class="nav-item">
+              <span class="icon is-large">
+                <a [routerLink]="['/']"><i class="fa fa-home"></i></a>
+              </span>
             </p>
+
+            <div class="control is-grouped nav-item">
+              <p class="control has-addons has-icon has-icon-right">
+                <input class="input" type="text" placeholder="Owner"
+                    [ngModel]="github.owner" (ngModelChange)="github.owner=$event">
+
+                <a class="button is-disabled">/</a>
+
+                <input class="input" type="text" placeholder="Repository"
+                    [ngModel]="github.repo" (ngModelChange)="github.repo=$event">
+              </p>
+
+              <p class="control">
+                <a class="button is-primary" [class.is-disabled]="github.isInvalid()"
+                    [routerLink]="['/project', github.owner, github.repo]">Reload</a>
+              </p>
+            </div>
         </div>
       </div>
     </header>
@@ -30,7 +40,9 @@
 
         <div class="column files">
           <aside class="menu">
-            <p class="menu-label">Files</p>
+            <p class="menu-label">
+              Files <span class="icon is-small"><i class="fa fa-files-o"></i></span>
+            </p>
             <ul class="menu-list">
               <li *ngFor="let filename of filenames">
                 <a [routerLink]="['/project', github.owner, github.repo, filename]"

@@ -1,4 +1,4 @@
-# Github File History
+# Github File History Viewer
 Navigate back & forth thru file history of github projects
 
 ## [Demo Link](https://rajasharan.github.io/github-file-history/)

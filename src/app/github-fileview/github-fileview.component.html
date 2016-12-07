@@ -5,8 +5,10 @@
 
 <div class="tile is-parent">
   <div class="tile is-child box">
-    <p class="title">{{filename | filename}}
-      <span class="subtitle" *ngIf="commits[filename]">( {{commits[filename][index]}} )</span>
+    <p class="title">
+      <span class="icon"><i class="fa fa-file-code-o"></i></span>
+      {{filename | filename}}
+      <span class="subtitle" *ngIf="commits[filename]">({{commits[filename][index]}})</span>
     </p>
     <pre>{{text}}</pre>
   </div>
