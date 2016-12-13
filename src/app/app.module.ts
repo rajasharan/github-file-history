@@ -7,9 +7,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { GithubSearchComponent } from './github-search/github-search.component';
 import { GithubProjectComponent } from './github-project/github-project.component';
-import { GithubService } from './gh-files.service';
+import { GithubService } from './shared/gh-files.service';
 import { GithubFileviewComponent } from './github-fileview/github-fileview.component';
-import { FilenamePipe } from './filename.pipe';
+import { FilenamePipe } from './shared/filename.pipe';
+import { TreeViewComponent } from './tree-view/tree-view.component';
 
 const appRoutes: Routes = [
   { path: '', component: GithubSearchComponent },
@@ -28,7 +29,8 @@ const appRoutes: Routes = [
     GithubSearchComponent,
     GithubProjectComponent,
     GithubFileviewComponent,
-    FilenamePipe
+    FilenamePipe,
+    TreeViewComponent
   ],
   imports: [
     BrowserModule,

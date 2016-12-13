@@ -44,10 +44,7 @@
               Files <span class="icon is-small"><i class="fa fa-files-o"></i></span>
             </p>
             <ul class="menu-list">
-              <li *ngFor="let filename of filenames">
-                <a [routerLink]="['/project', github.owner, github.repo, filename]"
-                  routerLinkActive="is-active">{{filename}}</a>
-              </li>
+              <app-tree-view [path]="rootFs"></app-tree-view>
             </ul>
           </aside>
         </div>

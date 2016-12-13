@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 
-import { GithubService } from '../gh-files.service';
+import { GithubService } from '../shared/gh-files.service';
+import { Path } from '../shared/path';
 
 @Component({
   selector: 'app-github-project',
@@ -11,8 +12,8 @@ import { GithubService } from '../gh-files.service';
   styleUrls: ['./github-project.component.css']
 })
 export class GithubProjectComponent implements OnInit {
-  private filenames: string[];
   private fileContent$: Observable<string>;
+  private rootFs: Path = new Path("/", null);
 
   constructor(
     private route: ActivatedRoute,
@@ -34,8 +35,11 @@ export class GithubProjectComponent implements OnInit {
   private listFiles(): void {
     this.github.getFiles$(this.github.owner, this.github.repo)
       .subscribe(
-        filenames => this.filenames = filenames,
+        filenames => {
+          filenames.forEach(file => this.rootFs.add(file));
+          //console.log(this.rootFs);
+        },
         err => console.log(err)
-      )
+      );
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 
-import { GithubService } from '../gh-files.service';
+import { GithubService } from '../shared/gh-files.service';
 
 @Component({
   selector: 'app-github-search',

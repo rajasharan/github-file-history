@@ -1,0 +1,10 @@
+<a *ngIf="path.name !== '/'" (click)="show = !show">{{path.name}}</a>
+<ul [class.menu-list]="path.name === '/'" *ngIf="show || path.name === '/'">
+  <li *ngFor="let dir of path.dirs">
+    <app-tree-view [path]="dir"></app-tree-view>
+  </li>
+  <li *ngFor="let file of path.files">
+    <a [routerLink]="['/project', github.owner, github.repo, path.getParentPath() + '/' + file]"
+        routerLinkActive="is-active">{{file}}</a>
+  </li>
+</ul>
