@@ -1,4 +1,3 @@
-
 :host .hero-body {
     align-items: initial;
     padding: 0px;
@@ -8,8 +7,5 @@
 :host .files {
     margin-top: 25px;
     overflow: auto;
-}
-
-:host .file {
-    overflow: auto;
+    max-height: 85vh;
 }
