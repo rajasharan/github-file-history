@@ -1,6 +1,8 @@
 <p class="control has-addons has-text-centered">
-  <a class="button is-large is-expanded" (click)="prevCommit()">< Previous commit</a>
-  <a class="button is-large is-expanded" (click)="nextCommit()">Next commit ></a>
+  <a class="button is-large is-expanded" (click)="prevCommit()"
+      [class.is-disabled]="commits[filename] && index === commits[filename].length -1">< Previous commit</a>
+  <a class="button is-large is-expanded" (click)="nextCommit()"
+      [class.is-disabled]="index === 0">Next commit ></a>
 </p>
 
 <div class="tile is-parent">
