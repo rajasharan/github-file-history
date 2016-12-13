@@ -1,0 +1,8 @@
+:host ul {
+    border: none;
+}
+
+:host a {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

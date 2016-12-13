@@ -1,4 +1,10 @@
-<a *ngIf="path.name !== '/'" (click)="show = !show">{{path.name}}</a>
+<a *ngIf="path.name !== '/'" (click)="show = !show">
+  <span class="icon is-small">
+    <i *ngIf="!show" class="fa fa-folder-o"></i>
+    <i *ngIf="show" class="fa fa-folder-open"></i>
+  </span>
+  {{path.name}}
+</a>
 <ul [class.menu-list]="path.name === '/'" *ngIf="show || path.name === '/'">
   <li *ngFor="let dir of path.dirs">
     <app-tree-view [path]="dir"></app-tree-view>

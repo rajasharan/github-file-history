@@ -1,5 +1,23 @@
-:host /deep/ pre {
-    overflow: auto;
-    max-height: 65vh;
-    max-width: 60vw;
+@media screen and (min-width: 980px) {
+    :host pre {
+        overflow: auto;
+        max-height: 65vh;
+        max-width: 65vw;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    :host /deep/ pre {
+        overflow: auto;
+        max-height: 65vh;
+        max-width: 70vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    :host pre {
+        overflow: auto;
+        max-height: 65vh;
+        max-width: 90vw;
+    }
 }
